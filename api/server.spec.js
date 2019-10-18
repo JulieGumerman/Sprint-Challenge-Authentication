@@ -5,11 +5,11 @@ const Users = require("../auth/auth-model");
 const db = require("../database/dbConfig.js");
 const jokes = require("../jokes/jokes-router.js");
 
-// describe("router /api/register", () => {
-//     const expectedStatusCode = 200;
-//     const response = request(server).get("/api/register");
-//     expect(response.status).not.toBeDefined();
-// })
+describe("router /api/register", () => {
+    const expectedStatusCode = 200;
+    const response = request(server).get("/api/register");
+    expect(response.status).toBeUndefined();
+})
 
 describe("auth model", () => {
     beforeEach(async () => {
@@ -22,8 +22,12 @@ describe("auth model", () => {
             await Users.add({ username: "b", password: "ya"})
             const users = await db("users");
             let i = users.length;
-            expect(users).toHaveLength(i++);
-            expect(users).not.toBe(undefined);
+            expect(users).toHaveLength(1);
+            // expect(users).toBe([{"id": 1, "password": "ya", "username": "b"}]);
+            // expect(users).toContain("b");
+            expect(users).not.toContain("Norm");
+            // expect(users.equals(users)).toBe(true);
+            expect(users).not.toBeUndefined();
         
             
         })
@@ -68,4 +72,21 @@ describe("whether it contains an item", () => {
         expect(doodles[1]).not.toBe(doodles[2]);
         
     })
+})
+
+describe("match objects", () => {
+    const goodBook = {
+        vocabulary: "advanced",
+        plot: "riveting"
+    }
+
+    const boysInTheBoat = {
+        vocabulary: "advanced",
+        plot: "riveting"
+    }
+
+    it("matches item to item", () => {
+        expect(boysInTheBoat).toMatchObject(goodBook);
+        expect(goodBook).toEqual(boysInTheBoat)
+    }) 
 })
