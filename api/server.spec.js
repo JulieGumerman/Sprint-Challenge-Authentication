@@ -7,8 +7,8 @@ const jokes = require("../jokes/jokes-router.js");
 
 describe("router /api/register", () => {
     const expectedStatusCode = 200;
-    const response = request(server).get("/api/register");
-    expect(response.status).toBeUndefined();
+    const response = request(server).post("/api/register");
+    expect(response.status).toBe(expectedStatusCode);
 })
 
 describe("auth model", () => {
