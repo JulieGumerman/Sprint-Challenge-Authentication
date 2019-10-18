@@ -40,11 +40,10 @@ router.post('/login', (req, res) => {
   Users.findBy({ username })
     .first()
     .then(user => {
-      // res.status(200).json({ message: "Haiii!!!"})
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = generateToken(user);
             res.status(200).json({
-                message: "Welcome to the jungle!",
+                message: "Haiiiiiiii",
                 token
             })
         } else {
