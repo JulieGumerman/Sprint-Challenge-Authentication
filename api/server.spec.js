@@ -23,7 +23,7 @@ describe("auth model", () => {
             const users = await db("users");
             let i = users.length;
             expect(users).toHaveLength(i++);
-            expect(users);
+            expect(users).not.toBe(undefined);
         
             
         })
@@ -35,7 +35,14 @@ describe("auth model", () => {
             await Users.findBy()
             const users = await db("users").where(username)
             expect(users).toHaveLength(1);
+            expect(Promise.resolve("users")).resolves.toBe("users");
         })
+        it ("resolves promises", () => {
+            expect(Promise.resolve("dogmadoos")).resolves.toBe("dogmadoos");
+            expect(Promise.resolve("dogmadoos")).resolves.not.toBe("doggos");
+        })
+        
+
     })
 
 
