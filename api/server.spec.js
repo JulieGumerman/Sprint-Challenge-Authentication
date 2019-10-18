@@ -59,3 +59,13 @@ describe("jokes router", () => {
         expect(response.type);
     })
 })
+
+describe("whether it contains an item", () => {
+    it ("returns things that are there and you get errors where there aren't", () => {
+        const doodles = [ "whoodle", "aussiedoodle", "labradoodle", "goldendoodle", "sheepdoodle"];
+        expect(doodles).toContain("whoodle")
+        expect(doodles).not.toContain("bears");
+        expect(doodles[1]).not.toBe(doodles[2]);
+        
+    })
+})
